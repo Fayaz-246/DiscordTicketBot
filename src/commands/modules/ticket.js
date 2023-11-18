@@ -198,7 +198,7 @@ module.exports = {
               "The ticket system is not setup in this server!"
             );
 
-          await ticketSchema.findOneAndDelete({ GuildID: guildiD });
+          await ticketSchema.findOneAndDelete({ GuildID: guildId });
           await interaction.editReply(
             "Successfully disabled ticket system in this server!"
           );
