@@ -57,10 +57,21 @@ module.exports = {
         .setLabel("Delete")
         .setStyle(ButtonStyle.Danger)
     );
-    channel.permissionOverwrites.edit(openedData.UserID, {
-      deny: [PermissionFlagsBits.SendMessages],
-      allow: [PermissionFlagsBits.ViewChannel],
-    });
+    channel.permissionOverwrites.set([
+      { id: guildId, deny: [PermissionFlagsBits.ViewChannel] },
+      {
+        id: openedData.UserID,
+        allow: [PermissionFlagsBits.ViewChannel],
+        deny: [PermissionFlagsBits.SendMessages],
+      },
+      {
+        id: data.ManagerRole,
+        allow: [
+          PermissionFlagsBits.ViewChannel,
+          PermissionFlagsBits.SendMessages,
+        ],
+      },
+    ]);
     openedData.Closed = true;
     await openedData.save();
     await interaction.reply({

@@ -45,12 +45,23 @@ module.exports = {
         content: "This ticket is already unlocked.",
       });
 
-    channel.permissionOverwrites.edit(openedData.UserID, {
-      allow: [
-        PermissionFlagsBits.SendMessages,
-        PermissionFlagsBits.ViewChannel,
-      ],
-    });
+    channel.permissionOverwrites.set([
+      { id: guildId, deny: [PermissionFlagsBits.ViewChannel] },
+      {
+        id: openedData.UserID,
+        allow: [
+          PermissionFlagsBits.ViewChannel,
+          PermissionFlagsBits.SendMessages,
+        ],
+      },
+      {
+        id: data.ManagerRole,
+        allow: [
+          PermissionFlagsBits.ViewChannel,
+          PermissionFlagsBits.SendMessages,
+        ],
+      },
+    ]);
     openedData.Closed = false;
     await openedData.save();
     await interaction.reply({
