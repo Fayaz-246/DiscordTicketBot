@@ -171,7 +171,7 @@ module.exports = {
         case "channel":
           await ticketSchema.findOneAndUpdate(
             { GuildID: guildId },
-            { TranscriptsID: logs.id }
+            { TranscriptsID: channel.id }
           );
           await interaction.editReply(
             `Successfully updated ticket logs channel to - <#${logs.id}>`
