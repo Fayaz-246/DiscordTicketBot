@@ -168,7 +168,7 @@ module.exports = {
           );
           break;
 
-        case "logs":
+        case "channel":
           await ticketSchema.findOneAndUpdate(
             { GuildID: guildId },
             { TranscriptsID: logs.id }
