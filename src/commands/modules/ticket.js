@@ -174,7 +174,7 @@ module.exports = {
             { TranscriptsID: channel.id }
           );
           await interaction.editReply(
-            `Successfully updated ticket logs channel to - <#${logs.id}>`
+            `Successfully updated ticket logs channel to - <#${channel.id}>`
           );
           break;
 
